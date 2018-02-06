@@ -2,13 +2,20 @@ package com.redsam;
 
 
 import com.redsam.dao.CustomerRepository;
+import com.redsam.dao.DepartmentsRepository;
 import com.redsam.dao.RegionsRepository;
 import com.redsam.model.Customer;
+import com.redsam.model.Departments;
+import com.redsam.model.dto.DepartmentsDTOImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -33,7 +40,11 @@ public class Application implements CommandLineRunner {
 
 
     @Autowired
-    RegionsRepository regionsRepository;
+	RegionsRepository regionsRepository;
+    
+    
+    @Autowired
+    DepartmentsRepository departmentsRepository;
     
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
@@ -46,8 +57,16 @@ public class Application implements CommandLineRunner {
 
         System.out.println("DATASOURCE = " + dataSource);
         
-        regionsRepository.count();
-        regionsRepository.findAll();
+        //regionsRepository.count();
+        //regionsRepository.findAll();
+        
+        Page<DepartmentsDTOImpl> list = departmentsRepository.listDepartments(new PageRequest(0, 10));
+        java.util.Iterator it = list.iterator();
+        while(it.hasNext()) {
+        	DepartmentsDTOImpl val = (DepartmentsDTOImpl)it.next();
+        	System.out.println(val);
+        }
+        
 
 //        System.out.println("\n1.findAll()...");
 //        for (Customer customer : customerRepository.findAll()) {

@@ -59,6 +59,14 @@ public class Departments {
 		this.location = location;
 	}
 	
+	public String getManagerName() {
+		if(manager != null) {
+			return manager.getFirstName() + " " + manager.getLastName();
+		}
+		
+		return null;
+	}
+	
 	
 
 }
