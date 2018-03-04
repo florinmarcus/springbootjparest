@@ -13,7 +13,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import com.redsam.model.*;
-import com.redsam.model.dto.DepartmentsDTO;
 
 @Configuration
 public class RestConfiguration  {
@@ -48,7 +47,6 @@ public class RestConfiguration  {
           config.exposeIdsFor(Departments.class);
           config.exposeIdsFor(Customer.class);
           config.exposeIdsFor(Countries.class);
-          config.exposeIdsFor(DepartmentsDTO.class);
         }
       };
     }
