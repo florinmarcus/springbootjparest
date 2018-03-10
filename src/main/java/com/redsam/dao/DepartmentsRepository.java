@@ -8,12 +8,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.redsam.model.Departments;
 import com.redsam.model.dto.DepartmentsDTO;
 import com.redsam.model.dto.DepartmentsDTOImpl;
 
 @RepositoryRestResource(collectionResourceRel = "departments", path = "departments")
+/*@PreAuthorize("hasRole('AD_VP')")*/
 public interface DepartmentsRepository extends PagingAndSortingRepository<Departments, Long> {
 
 	
